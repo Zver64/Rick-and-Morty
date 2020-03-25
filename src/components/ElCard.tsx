@@ -1,7 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function ElCard({ className, imgUrl, onClose }) {
+type myProp = {
+  className?: any,
+  imgUrl: string,
+  onClose: any
+}
+
+function ElCard({ className, imgUrl, onClose}: myProp) {
   return (
     <div className={className}>
       <button onClick={onClose} className='close'>

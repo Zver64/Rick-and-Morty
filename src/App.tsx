@@ -30,9 +30,9 @@ const AppContainer = styled.div`
   }
 `
 function App() {
-  let items = []
+  let items:any[] = []
   for(let i = 0; i < 10; i++) {
-    items.push((<ElCard key={i.toString()} imgUrl="https://rickandmortyapi.com/api/character/avatar/1.jpeg" />))
+    items.push((<ElCard key={i.toString()} imgUrl="https://rickandmortyapi.com/api/character/avatar/1.jpeg" onClose={() => {}} />))
   }
   return (
     <AppContainer>

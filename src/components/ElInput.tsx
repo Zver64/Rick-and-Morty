@@ -1,7 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Comp = ({ placeholder, className }) => (
+type compProp = {
+  placeholder?: string,
+  className?: string
+}
+
+const Comp = ({ placeholder, className }: compProp) => (
   <input className={className} placeholder={placeholder} />
 )
 export default styled(Comp)`
