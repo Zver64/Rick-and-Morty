@@ -1,25 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components'
+import './styles.css'
+import ElInput from './components/ElInput'
+import ElCard from './components/ElCard'
+import ElSlot from './components/ElSlot'
 
+const AppContainer = styled.div`
+  padding: 15px;
+  width: 810px;
+  max-width: 100%;
+  height: 100vh;
+  .input {
+    margin-bottom: 50px;
+  }
+  .results {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .pair {
+    display: flex;
+    justify-content: center;
+    & > * {
+      margin-right: 30px;
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+`
 function App() {
+  let items = []
+  for(let i = 0; i < 10; i++) {
+    items.push((<ElCard key={i.toString()} imgUrl="https://rickandmortyapi.com/api/character/avatar/1.jpeg" />))
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <div className="input">
+        <ElInput placeholder="Type your query here..."/>
+      </div>
+      <div className="results">
+        {items}
+      </div>
+      <div className="pair">
+        <ElSlot />
+        <ElSlot />
+      </div>
+    </AppContainer>
   );
 }
 
