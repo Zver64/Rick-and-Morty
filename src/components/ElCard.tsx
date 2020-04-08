@@ -1,16 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useMutation, gql } from '@apollo/client'
 
 type myProp = {
   className?: any,
   imgUrl?: string,
-  onClose?: any
+  id: string
 }
 
-function ElCard({ className = {}, imgUrl = '', onClose = ()=>{}}: myProp) {
+const ADD_FILTER = gql`
+  mutation AddFilter($id: String!) {
+    addFilter(id: $id) @client
+  }
+`
+
+function ElCard({ className = {}, imgUrl = '', id }: myProp) {
+  const [addFilter] = useMutation(ADD_FILTER, {variables: {id}})
   return (
     <div className={className}>
-      <button onClick={onClose} className='close'>
+      <button onClick={() => addFilter()} className='close'>
         <img src={require("../assets/vector.svg")} alt='close' />
       </button>
       <div className='imageBox'>

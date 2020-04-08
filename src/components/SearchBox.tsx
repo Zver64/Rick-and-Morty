@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce'
 import { gql, useQuery } from '@apollo/client'
 
 const GET_LOCAL = gql`
-  {
+  query getSearch {
     search @client
   }
 `
