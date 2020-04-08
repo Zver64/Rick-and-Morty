@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 type myProp = {
   className?: any,
-  imgUrl: string,
-  onClose: any
+  imgUrl?: string,
+  onClose?: any
 }
 
-function ElCard({ className, imgUrl, onClose}: myProp) {
+function ElCard({ className = {}, imgUrl = '', onClose = ()=>{}}: myProp) {
   return (
     <div className={className}>
       <button onClick={onClose} className='close'>

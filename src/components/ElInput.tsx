@@ -6,9 +6,12 @@ type compProp = {
   className?: string
 }
 
-const Comp = ({ placeholder, className }: compProp) => (
-  <input className={className} placeholder={placeholder} />
-)
+const Comp = ({ placeholder, className }: compProp) => {
+  console.log('test')
+  return (
+   <input type="text"/>
+  )
+}
 export default styled(Comp)`
   width: 100%;
   padding: 22px 27px;
