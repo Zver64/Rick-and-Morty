@@ -2,13 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import CardList from './CardList'
 import debounce from 'lodash.debounce'
-import { gql, useQuery } from '@apollo/client'
-
-const GET_LOCAL = gql`
-  query getSearch {
-    search @client
-  }
-`
 
 function SearchBox({ className }: { className?: any }) {
   let [search, setSearch] = useState('')

@@ -23,3 +23,14 @@ export const ADD_PARTY = gql`
     addParty(person: $person, link: $link) @client
   }
 `
+export const GET_IMAGES = gql`
+  query getCharacters($page: Int!, $name: String!) {
+    characters(page: $page, filter: { name: $name }) {
+      results {
+        image
+        id
+        name
+      }
+    }
+  }
+`

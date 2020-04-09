@@ -1,19 +1,7 @@
 import React from 'react'
 import ElCard from './ElCard'
-import { useQuery, gql } from '@apollo/client'
-import { GET_FILTERED } from '../apollo/gql'
-
-const GET_IMAGES = gql`
-  query getCharacters($page: Int!, $name: String!) {
-    characters(page: $page, filter: { name: $name }) {
-      results {
-        image
-        id
-        name
-      }
-    }
-  }
-`
+import { useQuery } from '@apollo/client'
+import { GET_FILTERED, GET_IMAGES } from '../apollo/gql'
 
 function CardList({ search = '' }: { search?: string }) {
   const { loading, error, data } = useQuery(GET_IMAGES, {
