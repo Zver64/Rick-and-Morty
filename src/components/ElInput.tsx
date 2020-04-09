@@ -7,7 +7,6 @@ type compProp = {
 }
 
 const Comp = ({ placeholder, className }: compProp) => {
-  console.log('test')
   return (
    <input type="text"/>
   )

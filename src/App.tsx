@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import './styles.css'
 import ElSlot from './components/ElSlot'
 import SearchBox from './components/SearchBox'
+import { GET_PARTY } from './apollo/gql'
+import { useQuery } from '@apollo/client'
 
 const AppContainer = styled.div`
   padding: 15px;
@@ -21,14 +23,15 @@ const AppContainer = styled.div`
   }
 `
 function App() {
+  const { loading, data } = useQuery(GET_PARTY)
   return (
     <AppContainer>
       <div className="main">
         <SearchBox />
       </div>
       <div className="pair">
-        <ElSlot />
-        <ElSlot />
+        <ElSlot imgUrl={data.party.rick} />
+        <ElSlot imgUrl={data.party.morty} />
       </div>
     </AppContainer>
   );

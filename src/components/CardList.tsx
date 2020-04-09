@@ -22,21 +22,19 @@ function CardList({ search = '' }: { search?: string }) {
       name: search,
     },
   })
-  const { data: filtered } = useQuery(GET_FILTERED)
-  console.log('filtered: ', filtered.filtered)
+  const { data: filtered, loading: filterLoading } = useQuery(GET_FILTERED)
   const list = (data: any) => {
-    if (loading) return <p>Loading...</p>
+    if (loading || filterLoading) return <p>Loading...</p>
     if (error) {
       return <p>Not found...</p>
     }
     return data.characters.results
       .filter((val: any) => {
         const test = filtered.filtered.filter((item: any) => item.id === val.id)
-        console.log('test: ', test) 
         return !test.length
       })
       .map((val: any) => {
-      return <ElCard imgUrl={val.image} key={val.id} id={val.id} />
+      return <ElCard imgUrl={val.image} key={val.id} name={val.name} id={val.id} />
     })
   }
   return <>{list(data)}</>

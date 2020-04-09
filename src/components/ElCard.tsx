@@ -1,27 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useMutation, gql } from '@apollo/client'
+import { useMutation } from '@apollo/client'
+import { ADD_PARTY, ADD_FILTER } from '../apollo/gql'
 
 type myProp = {
   className?: any,
   imgUrl?: string,
-  id: string
+  id: string,
+  name?: string
 }
 
-const ADD_FILTER = gql`
-  mutation AddFilter($id: String!) {
-    addFilter(id: $id) @client
-  }
-`
 
-function ElCard({ className = {}, imgUrl = '', id }: myProp) {
+function ElCard({ className = {}, imgUrl = '', name = '', id }: myProp) {
   const [addFilter] = useMutation(ADD_FILTER, {variables: {id}})
+  let [_name] = name.match(/rick|morty/gi) || []
+  const [ addParty ] = useMutation(ADD_PARTY, {
+    variables: {
+      person: _name && _name.toLowerCase(),
+      link: imgUrl
+    }
+  })
   return (
     <div className={className}>
       <button onClick={() => addFilter()} className='close'>
         <img src={require("../assets/vector.svg")} alt='close' />
       </button>
-      <div className='imageBox'>
+      <div className='imageBox' onClick={() => {
+        if(_name) addParty()
+        }} >
         <img src={imgUrl} alt='test' className='image' />
       </div>
     </div>

@@ -15,15 +15,25 @@ const client = new ApolloClient({
   resolvers
 })
 cache.writeQuery({
-  query: gql`{search}`,
+  query: gql`
+    query {
+      search
+      filtered
+      party {
+        rick
+        morty
+      }
+    }
+  `,
   data: {
-    search: ''
-  }
-})
-cache.writeQuery({
-  query: gql`{filtered}`,
-  data: {
-    filtered: []
+    __typename: 'Root',
+    search: '',
+    filtered: [],
+    party: {
+      __typename: 'Party',
+      rick: '',
+      morty: ''
+    }
   }
 })
 
