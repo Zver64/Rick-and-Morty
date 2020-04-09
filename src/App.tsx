@@ -10,6 +10,7 @@ const AppContainer = styled.div`
   padding: 15px;
   width: 810px;
   max-width: 100%;
+  margin: 0 auto;
   height: 100vh;
   .pair {
     display: flex;
