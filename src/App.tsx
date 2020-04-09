@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components'
 import './styles.css'
 import ElSlot from './components/ElSlot'
@@ -10,8 +10,7 @@ const AppContainer = styled.div`
   padding: 15px;
   width: 810px;
   max-width: 100%;
-  margin: 0 auto;
-  height: 100vh;
+  margin: 0 auto 50px;
   .pair {
     display: flex;
     justify-content: center;
@@ -22,20 +21,28 @@ const AppContainer = styled.div`
       }
     }
   }
+  .party {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+  }
 `
 function App() {
-  const { loading, data } = useQuery(GET_PARTY)
+  const { data } = useQuery(GET_PARTY)
   return (
     <AppContainer>
-      <div className="main">
+      <div data-testId='test' className='main'>
         <SearchBox />
       </div>
-      <div className="pair">
+      <h3 className='party'>Party</h3>
+      <div className='pair'>
         <ElSlot imgUrl={data.party.rick} />
         <ElSlot imgUrl={data.party.morty} />
       </div>
     </AppContainer>
-  );
+  )
 }
 
-export default App;
+export default App
