@@ -7,16 +7,16 @@ type elSlotProp = {
 }
 
 function ElSlot({className, imgUrl = ''}: elSlotProp) {
-  const image = () => {
-    if(imgUrl) {
-      return <img src={imgUrl} alt="test" />
-    }
-  }
-  return(
-    <div className={className}>
-      {image()}
-    </div>
-  )
+	const image = () => {
+		if(imgUrl) {
+			return <img src={imgUrl} alt="test" />
+		}
+	}
+	return(
+		<div className={className}>
+			{image()}
+		</div>
+	)
 }
 
 export default styled(ElSlot)`

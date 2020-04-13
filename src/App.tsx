@@ -30,19 +30,19 @@ const AppContainer = styled.div`
   }
 `
 function App() {
-  const { data } = useQuery(GET_PARTY)
-  return (
-    <AppContainer>
-      <div data-testId='test' className='main'>
-        <SearchBox />
-      </div>
-      <h3 className='party'>Party</h3>
-      <div className='pair'>
-        <ElSlot imgUrl={data.party.rick} />
-        <ElSlot imgUrl={data.party.morty} />
-      </div>
-    </AppContainer>
-  )
+	const { data } = useQuery(GET_PARTY)
+	return (
+		<AppContainer>
+			<div data-testid='test' className='main'>
+				<SearchBox />
+			</div>
+			<h3 className='party'>Party</h3>
+			<div className='pair'>
+				<ElSlot imgUrl={data.party.rick} />
+				<ElSlot imgUrl={data.party.morty} />
+			</div>
+		</AppContainer>
+	)
 }
 
 export default App

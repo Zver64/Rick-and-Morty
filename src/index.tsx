@@ -6,16 +6,18 @@ import * as serviceWorker from './serviceWorker'
 import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider, gql } from '@apollo/client'
 import resolvers from './apollo/resolvers'
 
-const cache = new InMemoryCache()
+const cache = new InMemoryCache({
+	dataIdFromObject: object => object.id || null
+})
 const client = new ApolloClient({
-  cache,
-  link: new HttpLink({
-    uri: 'https://rickandmortyapi.com/graphql',
-  }),
-  resolvers
+	cache,
+	link: new HttpLink({
+		uri: 'https://rickandmortyapi.com/graphql',
+	}),
+	resolvers
 })
 cache.writeQuery({
-  query: gql`
+	query: gql`
     query {
       search
       filtered
@@ -25,25 +27,25 @@ cache.writeQuery({
       }
     }
   `,
-  data: {
-    __typename: 'Root',
-    search: '',
-    filtered: [],
-    party: {
-      __typename: 'Party',
-      rick: '',
-      morty: ''
-    }
-  }
+	data: {
+		__typename: 'Root',
+		search: '',
+		filtered: [],
+		party: {
+			__typename: 'Party',
+			rick: '',
+			morty: ''
+		}
+	}
 })
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+	<React.StrictMode>
+		<ApolloProvider client={client}>
+			<App />
+		</ApolloProvider>
+	</React.StrictMode>,
+	document.getElementById('root')
 )
 
 // If you want your app to work offline and load faster, you can change

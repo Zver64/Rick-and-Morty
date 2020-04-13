@@ -12,26 +12,26 @@ type myProp = {
 
 
 function ElCard({ className = {}, imgUrl = '', name = '', id }: myProp) {
-  const [addFilter] = useMutation(ADD_FILTER, {variables: {id}})
-  let [_name] = name.match(/rick|morty/gi) || []
-  const [ addParty ] = useMutation(ADD_PARTY, {
-    variables: {
-      person: _name && _name.toLowerCase(),
-      link: imgUrl
-    }
-  })
-  return (
-    <div className={className}>
-      <button onClick={() => addFilter()} className='close'>
-        <img src={require("../assets/vector.svg")} alt='close' />
-      </button>
-      <div className='imageBox' onClick={() => {
-        if(_name) addParty()
-        }} >
-        <img src={imgUrl} alt='test' className='image' />
-      </div>
-    </div>
-  )
+	const [addFilter] = useMutation(ADD_FILTER, {variables: {id}})
+	let [_name] = name.match(/rick|morty/gi) || []
+	const [ addParty ] = useMutation(ADD_PARTY, {
+		variables: {
+			person: _name && _name.toLowerCase(),
+			link: imgUrl
+		}
+	})
+	return (
+		<div className={className}>
+			<button onClick={() => addFilter()} className='close'>
+				<img src={require('../assets/vector.svg')} alt='close' />
+			</button>
+			<div className='imageBox' onClick={() => {
+				if(_name) addParty()
+			}} >
+				<img src={imgUrl} alt='test' className='image' />
+			</div>
+		</div>
+	)
 }
 
 export default styled(ElCard)`

@@ -4,30 +4,30 @@ import CardList from './CardList'
 import debounce from 'lodash.debounce'
 
 function SearchBox({ className }: { className?: any }) {
-  let [search, setSearch] = useState('')
+	let [search, setSearch] = useState('')
 
-  function getData(name: string) {
-    setSearch(name)
-  }
-  const deb = debounce(getData, 300)
-  const mySearch = (search: string) => {
-    if (!search) return <p>Waiting for your search</p>
-    if (search.length < 3) return <p>Your query is too short</p>
-    return <CardList search={search} />
-  }
-  return (
-    <div className={className}>
-      <div className='search'>
-        <input
-          placeholder='type something'
-          onChange={(e) => deb(e.target.value)}
-        />
-      </div>
-      <div className='list'>
-        {mySearch(search)}
-      </div>
-    </div>
-  )
+	function getData(name: string) {
+		setSearch(name)
+	}
+	const deb = debounce(getData, 300)
+	const mySearch = (search: string) => {
+		if (!search) return <p>Waiting for your search</p>
+		if (search.length < 3) return <p>Your query is too short</p>
+		return <CardList search={search} />
+	}
+	return (
+		<div className={className}>
+			<div className='search'>
+				<input
+					placeholder='type something'
+					onChange={(e) => deb(e.target.value)}
+				/>
+			</div>
+			<div className='list'>
+				{mySearch(search)}
+			</div>
+		</div>
+	)
 }
 
 export default styled(SearchBox)`
